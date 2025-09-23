@@ -16,7 +16,6 @@ Loop configCount {
 Hotkey("!0", CycleConfigs)
 
 SetConfig(controlGroup, hotkeyName) {
-    MsgBox "Switching to control group " controlGroup
     Run('powershell -ExecutionPolicy Bypass -File "' scriptsDir '\switch_control_group.ps1" ' controlGroup)
     FileDelete(active_profile)
     FileAppend(controlGroup, active_profile)
