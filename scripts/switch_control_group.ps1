@@ -9,14 +9,17 @@ $displaysToEnable = $config.$controlGroup.activeDisplays
 $displaysToDisable = $config.$controlGroup.disableDisplays
 
 foreach ($display in $displaysToEnable) {
-    $displayIndex = (Get-DisplayInfo | Where-Object {$_.DisplayName -eq $display}).DisplayId
-    Enable-Display $displayIndex
+    $displayObj = (Get-DisplayInfo | Where-Object {$_.DisplayName -eq $display})
+    if (!$displayObj.Active) {
+        Enable-Display $displayObj.DisplayId
+    }
 }
 
-
 foreach ($display in $displaysToDisable) {
-    $displayIndex = (Get-DisplayInfo | Where-Object {$_.DisplayName -eq $display}).DisplayId
-    Disable-Display $displayIndex
+    $displayObj = (Get-DisplayInfo | Where-Object {$_.DisplayName -eq $display})
+    if ($displayObj.Active) {
+        Disable-Display $displayObj.DisplayId
+    }
 }
 
 # Set audio device
