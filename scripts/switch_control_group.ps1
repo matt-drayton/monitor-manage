@@ -24,6 +24,9 @@ foreach ($display in $displaysToDisable) {
 
 # Set audio device
 $audioDeviceName = $config.$controlGroup.audio
-$audioDeviceIndex = (Get-AudioDevice -List | Where-Object { $_.Name -eq $audioDeviceName }).Index
+$audioDeviceObj = (Get-AudioDevice -List | Where-Object { $_.Name -eq $audioDeviceName })
 
-Set-AudioDevice -Index $audioDeviceIndex
+if (!$audioDeviceObj.Default) {
+    $audioDeviceIndex = (Get-AudioDevice -List | Where-Object { $_.Name -eq $audioDeviceName }).Index
+    Set-AudioDevice -Index $audioDeviceIndex
+}
