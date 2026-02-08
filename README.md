@@ -60,7 +60,8 @@ Requires:
 Usage guide:
 - Install prerequisites
 - Clone repository / download files to Documents folder
-- Create profiles in `config.json`
+- Create profiles in `config.json` 
+  - you can use `example_config.json` as a template
   - Find display names through `Get-DisplayInfo`
   - Find audio device names through `Get-AudioDevice -List`
 - Create shortcut of `monitor-toggle.ahk`
